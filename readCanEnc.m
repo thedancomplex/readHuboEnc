@@ -25,9 +25,15 @@ for(i = 1:L)
 			%enc(1) = hex2dec([dec2hex(d(i,1)),dec2hex(d(i,2)),dec2hex(d(i,3)),dec2hex(d(i,4))]);
 			%enc(1) = hex2dec([dec2hex(d(i,4)),dec2hex(d(i,3)),dec2hex(d(i,2)),dec2hex(d(i,1))]);
 			%enc(2) = hex2dec([dec2hex(d(i,8)),dec2hex(d(i,7)),dec2hex(d(i,6)),dec2hex(d(i,5))]);
-			encN	=	[d{i}(4),d{i}(3),d{i}(2),d{i}(1)];
-			enc(1) = hex2dec(encN);
-			enc(2) = hex2dec([d{i}(8),d{i}(7),d{i}(6),d{i}(5)]);
+			disp(num2str(d(i,:)));
+			pause();
+			tt = [dec2hex(d(i,4)),dec2hex(d(i,3)),dec2hex(d(i,2)),dec2hex(d(i,1))];
+			disp(tt);
+			enc(1) = hex2dec([dec2hex(d(i,4)),dec2hex(d(i,3)),dec2hex(d(i,2)),dec2hex(d(i,1))]);
+			enc(2) = hex2dec([dec2hex(d(i,8)),dec2hex(d(i,7)),dec2hex(d(i,6)),dec2hex(d(i,5))]);
+			%encN	=	[d{i}(4),d{i}(3),d{i}(2),d{i}(1)];
+			%enc(1) = hex2dec(encN);
+			%enc(2) = hex2dec([d{i}(8),d{i}(7),d{i}(6),d{i}(5)]);
 			%enc(2) = hex2dec([dec2hex(d(i,5)),dec2hex(d(i,6)),dec2hex(d(i,7)),dec2hex(d(i,8))]);
 			moti(bni) = moti(bni) + 1;
 			ii = moti(bni);
