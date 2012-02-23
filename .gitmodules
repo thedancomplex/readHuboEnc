@@ -1,0 +1,3 @@
+[submodule "huboJointConstants"]
+	path = huboJointConstants
+	url = git@github.com:thedancomplex/huboJointConstants.git
