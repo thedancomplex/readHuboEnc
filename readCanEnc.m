@@ -1,4 +1,4 @@
-function [ mot ] = readCanEnc( tFile )
+function [ mot, motOrig ] = readCanEnc( tFile )
 
 addpath('huboJointConstants');			% add the hubo joint constants
 						% path
@@ -10,6 +10,7 @@ maxBaseVal		=	hex2dec('90');	% Maximum value (not including
 						% for enc read
 [ t, ch, id, dlc, d, L ] = readCan( tFile );	% get can data
 mot = [];
+motOrig = [];
 moti = [];
 moti(jointMax) 		=	0;
 for(i = 1:L)
@@ -42,12 +43,15 @@ for(i = 1:L)
 			mot1 = jmc(bni,1);
 			mot(mot1,1,ii) = t(i);		% record the time
 			mot(mot1,2,ii) = typecast(uint32(enc(1)),'int32');		% record the pos
+			motOrig(mot1,1,ii) = t(i);
+			motOrig(mot1,2,ii) = enc(1);
 			
 			%% Motor 2
 			mot2 = jmc(bni,2);	
 			mot(mot2,1,ii) = t(i);		% record the time
 			mot(mot2,2,ii) = typecast(uint32(enc(2)),'int32');		% record the pos
-
+			motOrig(mot2,1,ii) = t(i);
+			motOrig(mot2,2,ii) = enc(2);
 			
 		end
 			
