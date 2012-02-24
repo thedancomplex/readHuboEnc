@@ -4,8 +4,8 @@ clear all
 addpath('huboJointConstants');
 huboJointConst;
 
-[ mot, motOrig ] = readCanEnc('logs/LSR.txt');
-save LSRr4.mat mot motOrig
+[ mot, motOrig ] = readCanEnc('logs/enc_read_r1.txt');
+save LSRr41.mat mot motOrig
 %load motR41;
 m = LSRi;
 

@@ -42,14 +42,31 @@ for(i = 1:L)
 			%% Motor 1
 			mot1 = jmc(bni,1);
 			mot(mot1,1,ii) = t(i);		% record the time
-			mot(mot1,2,ii) = typecast(uint32(enc(1)),'int32');		% record the pos
+			%mot(mot1,2,ii) = typecast(uint32(enc(1)),'int32');		% record the pos
+			t = enc(1);
+			td = t & hex2dec('7FFFFFFF');
+			ts = t & hex2dec('80000000');
+			tf = td;
+			if(ts > 0 )
+				td = - td;
+			end
+
+			mot(mot1,2,ii) = td;		% record the pos
 			motOrig(mot1,1,ii) = t(i);
 			motOrig(mot1,2,ii) = enc(1);
 			
 			%% Motor 2
 			mot2 = jmc(bni,2);	
 			mot(mot2,1,ii) = t(i);		% record the time
-			mot(mot2,2,ii) = typecast(uint32(enc(2)),'int32');		% record the pos
+			%mot(mot2,2,ii) = typecast(uint32(enc(2)),'int32');		% record the pos
+			t = enc(2);
+			td = t & hex2dec('7FFFFFFF');
+			ts = t & hex2dec('80000000');
+			tf = td;
+			if(ts > 0 )
+				td = - td;
+			end
+			mot(mot2,2,ii) = td;
 			motOrig(mot2,1,ii) = t(i);
 			motOrig(mot2,2,ii) = enc(2);
 			
