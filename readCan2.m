@@ -1,5 +1,18 @@
 function [ deg, t ] = readCan2(tName, m)
 
+%% reads the logged file of the vector can analyzer and returns the 
+% encoder reading for the desired motor m
+%
+% function [ deg, t ] = readCan2(tName, m)
+%
+% Send:
+%	tName	=	string of the path and name to the can logged file
+%	m	=	the motor you are interested in
+%
+% Return:
+%	deg	=	angel of joint in deg
+%	t	=	time in seconds
+
 addpath('huboJointConstants');
 huboJointConst;
 
