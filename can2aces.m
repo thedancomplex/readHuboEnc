@@ -17,11 +17,29 @@ addpath('huboJointConstants');
 huboJointConst;
 
 mot 	=	[];
-
+tFlag 	=	0;
 for ( i = 1:length(m) )
 	[d, t] = readCan2(tName, m(i));
+	
 
-	mot(:,i) = d;
+	ss = size(mot);
+	dd = d;
+	if (ss(1) > length(dd))
+		for ( ii = length(dd):ss(1) )
+			dd(ii) = dd(length(dd));
+		end
+	end
+
+
+	if ( tFlag == 1 & ss(1) < length(dd) )
+		for( ii = ss(1):length(dd) )
+			mot(ii,:) = mot(ss(1),:);
+		end
+	end
+%	disp(['size mot = ',num2str(size(mot))])
+%	disp(['size dd  = ',num2str(size(dd))])
+	mot(:,i) 	= 	dd;
+	tFlag 		= 	1;
 end
 
 %% Convert to rad

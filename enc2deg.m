@@ -24,3 +24,8 @@ quad		= ratio(4,m+1);
 
 
 deg = encVal/(  driven/drive * harmonic * enc * quad ) * 360.0;
+deg = deg*enc2acesDir(m+1);
+
+
+
+

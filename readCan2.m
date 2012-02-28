@@ -17,8 +17,9 @@ addpath('huboJointConstants');
 huboJointConst;
 
 
-
-fid=fopen('logs/enc_read_r4_SR90.txt','r');
+disp(['Reading Joint: ', jn{m+1}])
+%fid=fopen('logs/enc_read_r4_SR90.txt','r');
+fid=fopen(tName,'r');
 
 for l=1:4
     fgetl(fid);
@@ -35,35 +36,40 @@ fclose(fid);
 motN		=	jmcM(m+1);			% Motor number
 motorIndex 	=	dec2hex(hex2dec('60')+motN);	% JMC number
 
-ind=find(strcmp(A{3},motorIndex));
+ind=find(strcmp(A{3}, motorIndex));
 
 rawdata1	=strcat(A{10:-1:7});
 rawdata2	=strcat(A{14:-1:11});
 traw		=A{1};		%% time raw
 t		=traw(ind);
 
-
-
-
-
-
 deg 		= [];
-rawData 	= [];
+rawData 	= []; 
 
 
-tNum = find(jmc(motN+1,:),m+1);
+tNum = min(find(jmc(motN+1,:) == m));
 
+%disp(['tNum = ',num2str(tNum), '   motN = ', num2str(motN), '   size ind = ', num2str(size(ind))])
 if( tNum == 1)
 	rawData = rawdata1(ind);
-else if(tNum == 2)
+%	disp('choice 1')
+elseif(tNum == 2)
 	rawData = rawdata2(ind);
+%	disp('choice 2')
 end
-motorDataString=rawdata2(ind);
+%disp('h1')
+%motorDataString=rawdata2(ind);
+
+%disp(['rawData size = ', num2str(size(rawData))])
+motorDataString=rawData;
+%disp('h2')
 motorData=hex2dec(motorDataString);
+%disp('h3')
 m2Val = typecast(uint32(motorData),'int32');
-deg = enc2deg(m+1,double(m2Val)); 
+%disp('h4')
+deg = enc2deg(m,double(m2Val)); 
 
-
+%disp(['size deg = ', num2str(size(deg))])
 
 %plot(m2Val);
 %title('enc Tick')
