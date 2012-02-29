@@ -1,0 +1,13 @@
+program fullSetup
+{
+    zeroHubo.activate;
+    zeroHubo.start;
+    while (!zeroHubo.inFinalState())
+    {
+        if (zeroHubo.inFinalState || zeroHubo.isRunning == false) then break;
+        nothing;
+    }
+    zeroHubo.stop;
+    zeroHubo.deactivate;
+    printWarning("Full Setup of Hubo complete")
+}

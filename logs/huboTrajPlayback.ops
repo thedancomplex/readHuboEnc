@@ -1,0 +1,169 @@
+/*
+    //Grab the presently known value from a state
+    var float n = getSurface("StateName", "quant") 	
+					//StateName is the state to check
+					//quant is 'value', 'diff', or 'integral'
+    
+    var float n = checkCtrl("StateName") //Review the set point stored in the
+				         //buffer for StateName
+
+    addCtrl("StateName", val) 		//Queue set point 'val' to StateName in buffer
+    sendCtrl()				//Apply set points in buffer to system
+*/
+
+program main{
+
+    // Define states
+    var float RHP = 0.0;
+    var float RHR = 0.0;
+    var float RHY = 0.0;
+    var float RKP = 0.0;
+    var float RAP = 0.0;
+    var float RAR = 0.0;
+
+    var float LHP = 0.0;
+    var float LHR = 0.0;
+    var float LHY = 0.0;
+    var float LKP = 0.0;
+    var float LAP = 0.0;
+    var float LAR = 0.0;
+
+    var float RSP = 0.0;
+    var float RSR = 0.0;
+    var float RSY = 0.0;
+    var float REB = 0.0;
+
+    var float LSP = 0.0;
+    var float LSR = 0.0;
+    var float LSY = 0.0;
+    var float LEB = 0.0;
+
+    var float WST = 0.0;
+
+    var float RSPf = 0.0;
+    var float RSRf = 0.0;
+    var float RSYf = 0.0;
+    var float REBf = 0.0;
+
+    var float LSPf = 0.0;
+    var float LSRf = 0.0;
+    var float LSYf = 0.0;
+    var float LEBf = 0.0;
+
+    var float WSTf = 0.0;
+    
+    var float RHPf = 0.0;
+    var float RHRf = 0.0;
+    var float RHYf = 0.0;
+    var float RKPf = 0.0;
+    var float RAPf = 0.0;
+    var float RARf = 0.0;
+
+    var float LHPf = 0.0;
+    var float LHRf = 0.0;
+    var float LHYf = 0.0;
+    var float LKPf = 0.0;
+    var float LAPf = 0.0;
+    var float LARf = 0.0;
+
+    while(true)
+    {
+
+        if(getLine()) then
+        {
+
+            RSP = checkCtrl("RSP");
+            RSR = checkCtrl("RSR");
+            RSY = checkCtrl("RSY");
+            REB = checkCtrl("REB");
+
+
+            LSP = checkCtrl("LSP");
+            LSR = checkCtrl("LSR");
+            LSY = checkCtrl("LSY");
+            LEB = checkCtrl("LEB");
+
+            WST = checkCtrl("WST");
+
+
+            RHP = checkCtrl("RHP");
+            RHR = checkCtrl("RHR");
+            RHY = checkCtrl("RHY");
+            //RKP = checkCtrl("RKP");
+            RKP = checkCtrl("RKN");
+            RAP = checkCtrl("RAP");
+            RAR = checkCtrl("RAR");
+
+            LHP = checkCtrl("LHP");
+            LHR = checkCtrl("LHR");
+            LHY = checkCtrl("LHY");
+            //LKP = checkCtrl("LKP");
+            LKP = checkCtrl("LKN");
+            LAP = checkCtrl("LAP");
+            LAR = checkCtrl("LAR");
+        }
+
+//((((((((((((((((((((((((((((((((((((((
+//((((([ Start Unchanged Joints ](((((((
+//((((((((((((((((((((((((((((((((((((((
+        RSPf = RSP;
+        RSRf = RSR;
+        RSYf = RSY;
+        REBf = REB;
+
+        LSPf = LSP;
+        LSRf = LSR;
+        LSYf = LSY;
+        LEBf = LEB;
+
+        WSTf = WST;
+
+        RHPf = RHP;
+        RHRf = RHR;
+        RHYf = RHY;
+        RKPf = RKP;
+        RAPf = RAP;
+        RARf = RAR;
+        LHPf = LHP;
+        LHRf = LHR;
+        LHYf = LHY;
+        LKPf = LKP;
+        LARf = LAR;
+        LAPf = LAP;
+
+
+
+
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&[ End Rate Limiting ]&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+        addCtrl("RSP", RSPf);
+        addCtrl("RSR", RSRf);
+        addCtrl("RSY", RSYf);
+        addCtrl("REB", REBf);
+
+        addCtrl("LSP", LSPf);
+        addCtrl("LSR", LSRf);
+        addCtrl("LSY", LSYf);
+        addCtrl("LEB", LEBf);
+        
+        addCtrl("WST", WSTf);
+
+        addCtrl("RHP", RHPf);
+        addCtrl("RHR", RHRf);
+        addCtrl("RHY", RHYf);
+        addCtrl("RKP", RKPf);
+        addCtrl("RAP", RAPf);
+        addCtrl("RAR", RARf);
+        addCtrl("LHP", LHPf);
+        addCtrl("LHR", LHRf);
+        addCtrl("LHY", LHYf);
+        addCtrl("LKP", LKPf);
+        addCtrl("LAP", LAPf);
+        addCtrl("LAR", LARf);
+
+        sendCtrl();
+        yield;
+    }
+}

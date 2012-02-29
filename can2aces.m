@@ -40,6 +40,9 @@ for ( i = 1:length(m) )
 %	disp(['size dd  = ',num2str(size(dd))])
 	mot(:,i) 	= 	dd;
 	tFlag 		= 	1;
+	if( m(i) == RWY)
+		save mv2.mat dd;
+	end
 end
 
 %% Convert to rad
@@ -59,11 +62,15 @@ fprintf(fid,'\n');
 ss = size(mot);
 for( i = 1:ss(1) )		%% Each row
 	for ( ii = 1:ss(2) )	%% each element in the row
-		fprintf(fid, [num2str(mot(i,ii)), ' '] );
+		a = mot(i,ii);
+		%fprintf(fid, [num2str(mot(i,ii)), ' '] );
+		fprintf(fid, [num2str(a,'%5.15f'), ' '] );
 	end
 	fprintf(fid,'\n');
 end
 
 fclose(fid);
+
+save mv3.mat mot m
 end
 
